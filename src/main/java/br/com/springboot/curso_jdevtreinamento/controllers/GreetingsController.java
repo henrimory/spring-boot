@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.springboot.curso_jdevtreinamento.model.Usuario;
 import br.com.springboot.curso_jdevtreinamento.repository.UsuarioRepository;
 
 /**
@@ -35,6 +36,11 @@ public class GreetingsController {
     @RequestMapping(value="/olamundo/{nome}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String retornaOlaMundo(@PathVariable String nome) {
+    	
+    	Usuario usuario = new Usuario();
+    	usuario.setNome(nome);
+    	
+    	usuarioRepository.save(usuario);//grava as informações no banco de dados
     	
     	return "Olá mundo " + nome;    	
     	
